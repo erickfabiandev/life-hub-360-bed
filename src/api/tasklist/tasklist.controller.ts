@@ -10,7 +10,15 @@ export async function createTaskListHandler(req: AuthRequest, res: Response) {
     const newTaskList = await createTaskList(user?.id, data)
     res.status(200).json(newTaskList)
   } catch (error: any) {
-    res.status(400).json({ message: 'TaskList created successfully', error: error.message })
+    if (error.name === 'ValidationError') {
+      const validationErrors = [];
+      for (const field in error.errors) {
+        validationErrors.push(error.errors[field].message);
+      }
+      return res.status(400).json({ error: validationErrors });
+    } else {
+      return res.status(500).json({ error: 'Ocurrió un error inesperado' });
+    }
   }
 }
 

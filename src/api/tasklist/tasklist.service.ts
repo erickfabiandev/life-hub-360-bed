@@ -22,7 +22,7 @@ export async function createTaskList(idUser: string, data: ITaskList) {
     )
     return savedTaskList
   } catch (error: any) {
-    throw new Error(error)
+    throw error
   }
 }
 

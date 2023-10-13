@@ -1,6 +1,7 @@
 import { Response } from "express";
 import { AuthRequest } from "../auth/auth.types";
 import { createTaskList, deleteTaskList, getAllTaskList, getLatestTasksListsForUser, updateTaskList } from "./tasklist.service";
+import mongoose from "mongoose";
 
 export async function createTaskListHandler(req: AuthRequest, res: Response) {
   const user = req.user

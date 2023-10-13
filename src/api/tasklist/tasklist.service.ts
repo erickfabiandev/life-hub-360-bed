@@ -13,12 +13,14 @@ export async function createTaskList(idUser: string, data: ITaskList) {
         color: data.color
       }
     )
+    const savedTaskList = await newTaskList.save();
+
     await UserModel.findByIdAndUpdate(
       idUser,
-      { $push: { 'taskList': newTaskList } },
+      { $push: { 'taskList': savedTaskList } },
       { new: true }
     )
-    return newTaskList
+    return savedTaskList
   } catch (error: any) {
     throw new Error(error)
   }
@@ -70,7 +72,6 @@ export async function getLatestTasksListsForUser(idUser: string) {
   const today = new Date();
   const firstDayOfMonth = new Date(today.getFullYear(), today.getMonth(), 1);
   const lastDayOfMonth = new Date(today.getFullYear(), today.getMonth() + 1, 0);
-  console.log(firstDayOfMonth, lastDayOfMonth)
 
   try {
 

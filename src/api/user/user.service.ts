@@ -8,18 +8,17 @@ export async function createUser(input: IUser, file?: Express.Multer.File) {
     let fileResponse = null
     let filePath = file?.path || ''
 
-    if (!filePath) {
-      throw new Error('File is required')
+    if (filePath) {
+      fileResponse = await uploadFile('users', filePath)
     }
 
-    fileResponse = await uploadFile('users', filePath)
-
     const hashedPassword = await hashPassword(input.password)
-    const data = {
+    const data = fileResponse ? {
+      avatar: fileResponse.secure_url
+    } : {
       ...input,
       email: input.email.toLowerCase(),
       password: hashedPassword,
-      avatar: fileResponse.secure_url
     }
 
     const user = await UserModel.create(data)

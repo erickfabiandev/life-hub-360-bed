@@ -23,7 +23,7 @@ const UserSchema = new Schema<IUser>({
   },
   avatar: {
     type: String,
-    required: [true, 'Avatar is required']
+    default: 'https://res.cloudinary.com/ds8a1x14x/image/upload/v1697245792/user_default.png'
   },
   status: {
     type: Boolean,

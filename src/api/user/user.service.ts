@@ -14,6 +14,9 @@ export async function createUser(input: IUser, file?: Express.Multer.File) {
 
     const hashedPassword = await hashPassword(input.password)
     const data = fileResponse ? {
+      ...input,
+      email: input.email.toLowerCase(),
+      password: hashedPassword,
       avatar: fileResponse.secure_url
     } : {
       ...input,

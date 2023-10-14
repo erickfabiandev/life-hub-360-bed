@@ -1,6 +1,7 @@
 # LifeHub360 - Back End 💻
 
 The backend of the Life Hub 360 is built using Node.js and Express.js, with Mongoose as the database ODM (Object Data Modeling). It handles user authentication, appointment management, product management, and communication with the frontend through RESTful APIs.
+Link for more details about the app's functionalities [DETAILED INFORMATION](https://plausible-macaw-78a.notion.site/LIFEHUB360-dbe4df46de784c9b861a4531f9ea556b?pvs=4)
 
 **Technologies Used**
 **Node.js:** Node.js is a runtime environment that allows us to run JavaScript on the server-side. It's the foundation of our backend.
